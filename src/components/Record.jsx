@@ -6,7 +6,6 @@ class-methods-use-this: 0,
 
 import React, { PureComponent } from 'react';
 import { Col, Table } from 'reactstrap';
-import Skeleton from 'react-loading-skeleton';
 import PropTypes from 'prop-types';
 
 class Record extends PureComponent {
@@ -31,7 +30,7 @@ class Record extends PureComponent {
 
     return (
       <Col className={name} xs="12">
-        <h3>{name || <Skeleton />}</h3>
+        <h3>{name}</h3>
         <Table striped>
           <thead>
             <tr>
