@@ -28,6 +28,7 @@ export default function (state = initialState, action) {
     case RESET_DNS:
       return {
         ...state,
+        query: data,
         data: initialState.data,
       };
 
