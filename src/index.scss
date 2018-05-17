@@ -1,0 +1,118 @@
+@import '../node_modules/bootstrap/scss/functions';
+@import '../node_modules/bootstrap/scss/variables';
+@import '../node_modules/bootstrap/scss/mixins';
+@import '../node_modules/bootstrap/scss/root';
+@import '../node_modules/bootstrap/scss/buttons';
+@import '../node_modules/bootstrap/scss/navbar';
+
+:root {
+  --wkt-primary: #507894;
+}
+
+$colors: (
+  primary: $blue,
+  secondary: $secondary,
+  success: $success,
+  info: $info,
+  warning: $warning,
+  danger: $danger
+);
+
+@each $name, $color in $colors {
+  .bg-#{$name} {
+    background: $color !important;
+  }
+}
+
+.bg-wkt {
+  background: var(--wkt-primary) !important;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family-sans-serif);
+}
+
+ul {
+  padding: 0 15px;
+}
+
+label {
+  margin-bottom: 0;
+}
+
+h1 {
+  font-weight: 700;
+}
+
+.table {
+  font-family: var(--font-family-monospace);
+
+  thead {
+    border-bottom: .25rem solid var(--wkt-primary);
+  
+    th {
+      border: none;
+
+      &:first-of-type {
+        padding-left: 0;
+      }
+
+      &:last-of-type {
+        padding-right: 0;
+      }
+    }
+  }
+}
+
+input.form-control {
+  padding: .75rem;
+}
+
+#root {
+  padding-bottom: 30rem;
+}
+
+.hide {
+  visibility: hidden;
+}
+
+.navbar-brand {
+  height: auto;
+}
+
+#root .btn {
+  &:focus, &.focus {
+    box-shadow: none;
+  }
+}
+
+.alert.show {
+  opacity: 1;
+}
+
+.dropdown-menu {
+  top: 70%;
+}
+
+.open > .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu > li > a {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  font-weight: normal;
+  line-height: 1.42857143;
+  color: #ebebeb;
+  white-space: nowrap;
+  
+  &:hover, &:focus {
+    text-decoration: none;
+    color: #ffffff;
+    background-color: var(--primary);
+  }
+}
