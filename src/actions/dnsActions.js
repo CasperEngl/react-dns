@@ -27,8 +27,9 @@ export function getDNS(query) {
   };
 }
 
-export function resetDNS() {
+export function resetDNS(query) {
   return {
     type: RESET_DNS,
+    data: query
   };
 }
