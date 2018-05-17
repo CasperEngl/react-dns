@@ -1,10 +1,5 @@
 import React, { Fragment } from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-} from 'react-router-dom';
-import { Container } from 'reactstrap';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
@@ -13,7 +8,7 @@ import { save, load } from 'redux-localstorage-simple';
 
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
-import List from './components/List';
+import Main from './components/Main';
 
 import rootReducer from './reducers/rootReducer';
 
@@ -31,12 +26,7 @@ const App = () => (
       <Fragment>
         <Navigation />
         <Hero />
-        <Container>
-          <Switch>
-            <Route path="/:domain" component={List} />
-            <Route component={List} />
-          </Switch>
-        </Container>
+        <Main />
       </Fragment>
     </Router>
   </Provider>
