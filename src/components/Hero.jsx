@@ -10,6 +10,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Container, Jumbotron, FormGroup, Input } from 'reactstrap';
+import validator from 'validator';
 
 import { getDNS, resetDNS } from '../actions/dnsActions';
 
@@ -31,10 +32,12 @@ class Hero extends PureComponent {
       const { getDNS, resetDNS } = this.props;
       const { value } = event.target;
 
-      this.props.history.push(value);
+      if (validator.isURL(value)) {
+        this.props.history.push(value);
 
-      resetDNS();
-      getDNS(value);
+        resetDNS(value);
+        getDNS(value);
+      }
     }
   }
 
