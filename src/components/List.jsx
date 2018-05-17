@@ -7,12 +7,14 @@ no-shadow: 0,
 import React, { PureComponent, Fragment } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Row } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import PropTypes from 'prop-types';
 
 import { getDNS, resetDNS } from '../actions/dnsActions';
 import Record from './Record';
 import PTR from './PTR';
+import SkeletonTable from './SkeletonTable';
 
 class List extends PureComponent {
   static propTypes = {
@@ -43,9 +45,33 @@ class List extends PureComponent {
 
   render() {
     const { dns } = this.props.dns;
-    const query = this.props.query;
+
     if (!dns)
-      return (null);
+      return (
+        <SkeletonTheme color="#252525" highlightColor="#282828">
+          <Row>
+            <Col xs={3}>
+              <h3>
+                <Skeleton duration={2} />
+              </h3>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={5}>
+              <h2>
+                <Skeleton duration={2} count={2} />
+              </h2>
+            </Col>
+          </Row>
+          <div className="mb-5" />
+
+          <SkeletonTable />
+          <SkeletonTable />
+          <SkeletonTable />
+          <SkeletonTable />
+          <SkeletonTable />
+        </SkeletonTheme>
+      )
 
     const {
       ptr,
@@ -60,7 +86,6 @@ class List extends PureComponent {
 
     return (
       <Fragment>
-        <h2 className="pb-2 mt-0 mb-3 border-bottom">{query.toUpperCase()}</h2>
         <PTR address={ptr} />
         <Row>
           <Record record={soa} name="SOA" />
@@ -78,7 +103,7 @@ class List extends PureComponent {
 
 const mapStateToProps = state => ({
   dns: state.dns.data,
-  query: state.dns.data.query,
+  query: state.dns.query,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
