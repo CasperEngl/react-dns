@@ -41,6 +41,15 @@ class List extends PureComponent {
       return <GhostDNS />;
     }
 
+    if (dns.ptr === null) {
+      return (
+        <Fragment>
+          <h2>No records found.</h2>
+          <GhostDNS />
+        </Fragment>
+      );
+    }
+
     const {
       ptr, soa, a, ns, cname, mx, txt, srv,
     } = dns;
