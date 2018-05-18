@@ -9,11 +9,6 @@ import { Col, Table } from 'reactstrap';
 import PropTypes from 'prop-types';
 
 class Record extends PureComponent {
-  static propTypes = {
-    record: PropTypes.arrayOf(PropTypes.object).isRequired,
-    name: PropTypes.string.isRequired,
-  }
-
   checkValue(value) {
     const values = ['TYPE', 'HOST', 'NAMESERVER', 'CONTACT', 'TTL', 'SERIAL', 'IP', 'PTR', 'TARGET', 'PRI', 'REFRESH', 'RETRY', 'MNAME'];
     return !values.includes(value.toUpperCase());
@@ -21,7 +16,7 @@ class Record extends PureComponent {
 
   render() {
     const { record, name } = this.props;
-    
+
     if (record.length === 0) {
       return (null);
     }
@@ -74,5 +69,10 @@ class Record extends PureComponent {
     );
   }
 }
+
+Record.propTypes = {
+  record: PropTypes.arrayOf(PropTypes.object).isRequired,
+  name: PropTypes.string.isRequired,
+};
 
 export default Record;
