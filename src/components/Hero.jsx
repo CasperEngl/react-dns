@@ -15,10 +15,6 @@ import validator from 'validator';
 import { getDNS, resetDNS } from '../actions/dnsActions';
 
 class Hero extends PureComponent {
-  static defaultProps = {
-    dns: [],
-  }
-
   static propTypes = {
     getDNS: PropTypes.func.isRequired,
     dns: PropTypes.oneOfType([
