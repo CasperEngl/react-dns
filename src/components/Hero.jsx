@@ -30,7 +30,9 @@ class Hero extends PureComponent {
   handleSearch(event) {
     if (event.key === 'Enter') {
       const { getDNS, resetDNS } = this.props;
-      const { value } = event.target;
+      const value = event.target.value.replace(/https|http|(:\/\/)|www\.|\/([^/]*).*$/gi, '');
+
+      event.target.value = value;
 
       if (validator.isURL(value)) {
         this.props.history.push(value);
