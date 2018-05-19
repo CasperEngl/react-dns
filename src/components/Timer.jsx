@@ -3,7 +3,7 @@ import React, { Component, Fragment } from 'react';
 class Timer extends Component {
   constructor(props) {
     super(props);
-    this.state = { seconds: props.ms };
+    this.state = { seconds: props.seconds };
   }
 
   componentDidMount() {

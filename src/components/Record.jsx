@@ -55,7 +55,7 @@ class Record extends PureComponent {
                         if (property === 'ttl') {
                           return (
                             <td key={counter++}>
-                              <Timer ms={value[property]} />
+                              <Timer seconds={value[property]} />
                             </td>
                           );
                         }
