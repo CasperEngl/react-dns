@@ -8,9 +8,11 @@ import React, { PureComponent } from 'react';
 import { Col, Table } from 'reactstrap';
 import PropTypes from 'prop-types';
 
+import Timer from './Timer';
+
 class Record extends PureComponent {
   checkValue(value) {
-    const values = ['TYPE', 'HOST', 'NAMESERVER', 'CONTACT', 'TTL', 'SERIAL', 'IP', 'PTR', 'TARGET', 'PRI', 'REFRESH', 'RETRY', 'MNAME'];
+    const values = ['TYPE', 'HOST', 'NAMESERVER', 'CONTACT', 'TTL', 'IP', 'PTR', 'TARGET', 'PRI', 'REFRESH', 'RETRY', 'MNAME', 'TXT'];
     return !values.includes(value.toUpperCase());
   }
 
@@ -51,7 +53,11 @@ class Record extends PureComponent {
                       keys.map((property) => {
                         if (this.checkValue(property)) { return (null); }
                         if (property === 'ttl') {
-                          return <td key={counter++} className="timer">{value[property]}</td>;
+                          return (
+                            <td key={counter++}>
+                              <Timer ms={value[property]} />
+                            </td>
+                          );
                         }
 
                         return (
