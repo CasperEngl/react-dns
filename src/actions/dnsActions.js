@@ -17,9 +17,12 @@ export function getDNS(query) {
       const result = await fetch(`https://support.wkt.dk/public/dns.php?domain=${query}`);
       const dns = await result.json();
 
-      return dispatch({
+      dispatch({
         type: GET_DNS,
         data: dns,
+        meta: {
+          throttle: 1500,
+        },
       });
     } catch (e) {
       // console.log(e);
@@ -30,6 +33,6 @@ export function getDNS(query) {
 export function resetDNS(query) {
   return {
     type: RESET_DNS,
-    data: query
+    data: query,
   };
 }

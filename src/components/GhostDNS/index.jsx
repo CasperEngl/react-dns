@@ -2,7 +2,7 @@ import React from 'react';
 import { Row, Col } from 'reactstrap';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 
-import SkeletonTable from './SkeletonTable';
+import SkeletonTable from '../SkeletonTable';
 
 const GhostDNS = () => (
   <SkeletonTheme color="#252525" highlightColor="#282828">

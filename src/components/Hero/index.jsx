@@ -5,44 +5,37 @@ no-shadow: 0,
 */
 
 import React, { PureComponent } from 'react';
-import { withRouter } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Container, Jumbotron, FormGroup, Input } from 'reactstrap';
 import validator from 'validator';
 
-import { getDNS, resetDNS } from '../actions/dnsActions';
+import { changeQuery } from '../../actions/queryActions';
+import { getDNS, resetDNS } from '../../actions/dnsActions';
 
 class Hero extends PureComponent {
-  static defaultProps = {
-    dns: [],
-  }
-
   static propTypes = {
+    changeQuery: PropTypes.func.isRequired,
     getDNS: PropTypes.func.isRequired,
-    dns: PropTypes.oneOfType([
-      PropTypes.object,
-      PropTypes.array,
-    ]).isRequired,
+    resetDNS: PropTypes.func.isRequired,
+    queryString: PropTypes.string.isRequired,
   }
 
-  handleSearch(event) {
-    if (event.key === 'Enter') {
-      const { getDNS, resetDNS } = this.props;
-      const { value } = event.target;
+  handleQuery(event) {
+    const { changeQuery, resetDNS, getDNS } = this.props;
+    const value = event.target.value.replace(/https|http|(:\/\/)|www\.|\/([^/]*).*$/gi, '');
 
-      if (validator.isURL(value)) {
-        this.props.history.push(value);
+    changeQuery(value);
 
-        resetDNS(value);
-        getDNS(value);
-      }
+    if (validator.isURL(value)) {
+      resetDNS(value);
+      getDNS(value);
     }
   }
 
   render() {
-    const { query } = this.props.dns;
+    const { queryString } = this.props;
 
     return (
       <Jumbotron>
@@ -53,8 +46,8 @@ class Hero extends PureComponent {
               type="text"
               placeholder="Søg"
               id="search"
-              defaultValue={query}
-              onKeyPress={event => this.handleSearch(event)}
+              value={queryString}
+              onChange={event => this.handleQuery(event)}
               autoFocus
             />
           </FormGroup>
@@ -65,12 +58,13 @@ class Hero extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-  dns: state.dns.data,
+  queryString: state.query.query,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
+  changeQuery,
   getDNS,
   resetDNS,
 }, dispatch);
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Hero));
+export default connect(mapStateToProps, mapDispatchToProps)(Hero);

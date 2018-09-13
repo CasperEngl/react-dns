@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { getDNS } from '../actions/dnsActions';
+import { getDNS } from '../../actions/dnsActions';
 
 class Countdown extends Component {
   constructor(props) {

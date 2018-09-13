@@ -62,16 +62,21 @@ const PTR = ({ address }) => {
 
   return (
     <Fragment>
+      <h3 className="mb-1 text-white-50">PTR</h3>
       {
-        servers.some(server => server.address === address) &&
-        <h3 className="mb-1 text-white-50">PTR</h3>
+        servers.some(server => server.address !== address) && (
+          <Fragment>
+            <h2>{address}</h2>
+            <div className="mb-4" />
+          </Fragment>
+        )
       }
       {
         servers.map((server) => {
           if (server.address === address) {
             return (
               <Fragment key={counter++}>
-                <h2>{server.name} <small className="text-white-50">({address})</small></h2>
+                <h3>{server.name} <small className="text-white-50">({address})</small></h3>
               </Fragment>
             );
           }

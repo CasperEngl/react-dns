@@ -10,22 +10,27 @@ import { connect } from 'react-redux';
 import { Row } from 'reactstrap';
 import PropTypes from 'prop-types';
 
-import { getDNS, resetDNS } from '../actions/dnsActions';
-import Record from './Record';
-import PTR from './PTR';
-import GhostDNS from './GhostDNS';
+import { getDNS, resetDNS } from '../../actions/dnsActions';
+import Record from '../Record';
+import PTR from '../PTR';
+import GhostDNS from '../GhostDNS';
 
 class List extends PureComponent {
+  static propTypes = {
+    getDNS: PropTypes.func.isRequired,
+    resetDNS: PropTypes.func.isRequired,
+    dns: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.array,
+    ]).isRequired,
+  }
+
   componentDidMount() {
-    const { getDNS, match } = this.props;
+    const { getDNS } = this.props;
     const { dns } = this.props.dns;
     const query = (dns !== undefined) ? this.props.dns.query : 'google.com';
 
-    if (match.params.domain) {
-      getDNS(match.params.domain);
-    } else {
-      getDNS(query);
-    }
+    getDNS(query);
   }
 
   componentWillUnmount() {
@@ -70,21 +75,6 @@ class List extends PureComponent {
     );
   }
 }
-
-List.propTypes = {
-  getDNS: PropTypes.func.isRequired,
-  resetDNS: PropTypes.func.isRequired,
-  dns: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.array,
-  ]).isRequired,
-  match: PropTypes.shape({
-    isExact: PropTypes.bool,
-    path: PropTypes.string,
-    url: PropTypes.string,
-    params: PropTypes.object,
-  }).isRequired,
-};
 
 const mapStateToProps = state => ({
   dns: state.dns.data,
