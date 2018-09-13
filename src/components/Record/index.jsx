@@ -8,7 +8,7 @@ import React, { PureComponent } from 'react';
 import { Col, Table } from 'reactstrap';
 import PropTypes from 'prop-types';
 
-import Timer from './Timer';
+import Timer from '../Timer';
 
 class Record extends PureComponent {
   static propTypes = {

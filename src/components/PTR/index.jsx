@@ -7,7 +7,7 @@ no-plusplus: 0,
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-import servers from '../data/servers';
+import servers from '../../data/servers';
 
 const PTR = ({ address }) => {
   let counter = 1;
