@@ -2,6 +2,7 @@
 eslint
 
 no-undef: 0,
+no-shadow: 0,
 */
 
 import React, { Component, Fragment } from 'react';
@@ -14,6 +15,7 @@ import { getDNS } from '../../actions/dnsActions';
 class Countdown extends Component {
   static propTypes = {
     getDNS: PropTypes.func.isRequired,
+    query: PropTypes.string.isRequired,
     ms: PropTypes.number.isRequired,
   }
 
