@@ -1,3 +1,9 @@
+/*
+eslint
+
+no-undef: 0,
+*/
+
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
@@ -6,6 +12,11 @@ import { connect } from 'react-redux';
 import { getDNS } from '../../actions/dnsActions';
 
 class Countdown extends Component {
+  static propTypes = {
+    getDNS: PropTypes.func.isRequired,
+    ms: PropTypes.number.isRequired,
+  }
+
   constructor(props) {
     super(props);
 
@@ -14,10 +25,6 @@ class Countdown extends Component {
     };
 
     this.tick = this.tick.bind(this);
-  }
-
-  static propTypes = {
-    getDNS: PropTypes.func.isRequired,
   }
 
   // Wait until the component has mounted to start the animation frame
@@ -35,7 +42,7 @@ class Countdown extends Component {
   }
 
   stop() {
-    const { query } = this.props;
+    const { getDNS, query } = this.props;
 
     cancelAnimationFrame(this.frameId);
 

@@ -1,7 +1,7 @@
 import { GET_DNS, RESET_DNS } from '../actions/dnsActions';
 
 const initialState = {
-  query: '',
+  query: 'google.com',
   data: {
     ptr: '',
     soa: [],

@@ -13,9 +13,10 @@ export const RESET_DNS = 'RESET_DNS';
 
 export function getDNS(query) {
   return async function (dispatch) {
-    try {
-      const result = await fetch(`https://support.wkt.dk/public/dns.php?domain=${query}`);
-      const dns = await result.json();
+    setTimeout(async () => {
+      try {
+        const result = await fetch(`https://support.wkt.dk/public/dns.php?domain=${query}`);
+        const dns = await result.json();
 
       dispatch({
         type: GET_DNS,

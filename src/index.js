@@ -13,7 +13,6 @@ import 'jquery/dist/jquery.min';
 import 'bootstrap/dist/js/bootstrap.min';
 import 'font-awesome/css/font-awesome.min.css';
 import './style/index.css';
-import './js/timer';
 import App from './App.jsx';
 import registerServiceWorker from './registerServiceWorker';
 
