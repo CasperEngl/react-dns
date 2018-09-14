@@ -2,6 +2,7 @@
 eslint
 
 class-methods-use-this: 0,
+no-plusplus: 0,
 */
 
 import React, { PureComponent } from 'react';
